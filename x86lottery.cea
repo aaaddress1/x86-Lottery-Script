@@ -1,0 +1,38 @@
+/**
+* 	Simple Lottery
+* 	a small x86 assembly cheat engine script for getting randomize index
+*
+* 	author: aaaddress1@gmail.com
+**/
+alloc(script, 512)
+createthread(script)
+
+script:
+rdtsc
+xor edx, edx
+mov ecx, 0xff //how many poeple (max index)
+div ecx
+
+push ebp
+mov ebp, esp
+sub esp, 0x64
+mov ecx, esp
+push ecx
+
+push 00006425
+mov eax, esp
+push edx
+push eax
+push ecx
+call sprintf
+add esp, 0x10
+
+pop ecx
+push 0
+push 0
+push ecx
+push 0
+call MessageBoxA
+
+leave
+ret
